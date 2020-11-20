@@ -6,7 +6,7 @@ from rest_framework.parsers import JSONParser
 from django.views.decorators.csrf import csrf_exempt
 from .models import Task
 from .serializers import TasksSerializer
-from .form import TaskForm
+from .form import TaskForms
 
 def get_tasks(request):
     items = Task.objects.all()
@@ -16,7 +16,7 @@ def get_tasks(request):
 @csrf_exempt
 def post_task(request):
 
-    form = TaskForm(request.POST)
+    form = TaskForms(request.POST)
 
     if form.is_valid():
          form.save()
